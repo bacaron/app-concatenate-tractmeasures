@@ -2,7 +2,6 @@
 
 import os,sys
 import json
-import requests
 import pandas as pd
 
 def concatenate_csvs(csvs,subjects,sessions,tags,datatype_tags):
