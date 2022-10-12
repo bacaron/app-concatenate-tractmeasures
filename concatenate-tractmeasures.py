@@ -19,8 +19,10 @@ def concatenate_csvs(csvs,subjects,sessions,tags,datatype_tags):
             tmp['sessionID'] = [ sessions[i] for f in range(len(tmp)) ]
 
         # add tags and datatype tags
-        tmp['tags'] = [ tags for f in range(len(tmp)) ]
-        tmp['datatype_tags'] = [ datatype_tags for f in range(len(tmp)) ]
+        if 'tags' not in tmp.keys().tolist():
+            tmp['tags'] = [ tags[i] for f in range(len(tmp)) ]
+        if 'datatype_tags' not in tmp.keys().tolist():
+            tmp['datatype_tags'] = [ datatype_tags[i] for f in range(len(tmp)) ]
 
         # concatenate dataframes
         data = pd.concat([data,tmp])
