@@ -44,8 +44,9 @@ def main():
     csvs = config['csv']
     subjects = [ f['meta']['subject'] for f in config['_inputs'] ]
     sessions = [ f['meta']['session'] for f in config['_inputs'] ]
-    tags = config['tags']
-    datatype_tags = config['datatype_tags']
+    tags = [ f['tags'] for f in config['_inputs'] ]
+    datatype_tags = [ f['datatype_tags'] for f in config['_inputs'] ]
+
     outPath = './tractmeasures/tractmeasures.csv'
 
     # concatenate data
