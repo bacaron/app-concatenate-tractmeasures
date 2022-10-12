@@ -23,7 +23,10 @@ def concatenate_csvs(csvs,subjects,sessions,tags,datatype_tags):
         tmp['datatype_tags'] = [ datatype_tags for f in range(len(tmp)) ]
 
         # concatenate dataframes
-        data = pd.concat(data,tmp)
+        data = pd.concat([data,tmp])
+    
+    # reset index
+    data = data.reset_index(drop=True)
 
     return data
 
