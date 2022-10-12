@@ -13,9 +13,9 @@ def concatenate_csvs(csvs,subjects,sessions,tags,datatype_tags):
         tmp = pd.read_csv(csvs[i])
 
         # add subject and session ids if not there
-        if not tmp['subjectID']:
+        if 'subjectID' not in tmp.keys().tolist():
             tmp['subjectID'] = [ subjects[i] for f in range(len(tmp)) ]
-        if not tmp['sessionID']:
+        if 'sessionID' not in tmp.keys().tolist():
             tmp['sessionID'] = [ sessions[i] for f in range(len(tmp)) ]
 
         # add tags and datatype tags
