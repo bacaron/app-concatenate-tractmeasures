@@ -38,6 +38,7 @@ def main():
         os.mkdir('./tractmeasures')
 
     # set input values
+    csvs = config['csv']
     subjects = [ f['meta']['subject'] for f in config['_inputs'] ]
     sessions = [ f['meta']['session'] for f in config['_inputs'] ]
     tags = config['tags']
