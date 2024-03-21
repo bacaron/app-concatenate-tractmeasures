@@ -4,13 +4,13 @@ import os,sys
 import json
 import pandas as pd
 
-def concatenate_csvs(csvs,subjects,sessions,tags,datatype_tags):
+def concatenate_csvs(csvs,csv_name,subjects,sessions,tags,datatype_tags):
     
     data = pd.DataFrame()
 
     for i in range(len(csvs)):
         # load data
-        tmp = pd.read_csv(csvs[i])
+        tmp = pd.read_csv(os.path.join(csvs[i],csv_name))
 
         # add subject and session ids if not there
         if 'subjectID' not in tmp.keys().tolist():
@@ -39,20 +39,22 @@ def main():
         config = json.load(config_f)
 
     # make output directories
-    if not os.path.exists('./tractmeasures'):
-        os.mkdir('./tractmeasures')
+    if not os.path.exists('./parc-stats'):
+        os.mkdir('./parc-stats')
+        os.mkdir('./parc-stats/parc-stats')
 
     # set input values
     csvs = config['csv']
+    csv_name = config['csv_name']
     subjects = [ f['meta']['subject'] for f in config['_inputs'] ]
     sessions = [ f['meta']['session'] for f in config['_inputs'] ]
     tags = [ f['tags'] for f in config['_inputs'] ]
     datatype_tags = [ f['datatype_tags'] for f in config['_inputs'] ]
 
-    outPath = './tractmeasures/tractmeasures.csv'
+    outPath = './parc-stats/parc-stats/parc_stats.csv'
 
     # concatenate data
-    data = concatenate_csvs(csvs,subjects,sessions,tags,datatype_tags)
+    data = concatenate_csvs(csvs,csv_name,subjects,sessions,tags,datatype_tags)
 
     # output csv
     data.to_csv(outPath,index=False)
