@@ -44,7 +44,7 @@ def main():
         os.mkdir('./parc-stats/parc-stats')
 
     # set input values
-    csvs = config['csv']
+    csvs = config['parc-stats']
     csv_name = config['csv_name']
     subjects = [ f['meta']['subject'] for f in config['_inputs'] ]
     sessions = [ f['meta']['session'] for f in config['_inputs'] ]
