@@ -10,7 +10,7 @@ def concatenate_csvs(csvs,csv_name,subjects,sessions,tags,datatype_tags):
 
     for i in range(len(csvs)):
         # load data
-        tmp = pd.read_csv(os.path.join(csvs[i],csv_name))
+        tmp = pd.read_csv(os.path.join(csvs[i],csv_name+'.csv'))
 
         # add subject and session ids if not there
         if 'subjectID' not in tmp.keys().tolist():
